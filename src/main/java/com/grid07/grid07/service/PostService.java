@@ -47,7 +47,7 @@ public class PostService {
             }
 
             if (redisService.isBotOnCooldown(request.getAuthorId(), post.getAuthorId())) {
-                redisService.incrementBotCount(postId); // undo the increment
+                redisService.decrementBotCount(postId);
                 throw new ResponseStatusException(HttpStatus.TOO_MANY_REQUESTS, "Cooldown cap: bot must wait 10 minutes");
             }
 

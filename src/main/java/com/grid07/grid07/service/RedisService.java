@@ -36,6 +36,11 @@ public class RedisService {
         return true;
     }
 
+    public void decrementBotCount(Long postId) {
+        String key = "post:" + postId + ":bot_count";
+        redisTemplate.opsForValue().decrement(key);
+    }
+
     public Long getBotCount(Long postId) {
         String key = "post:" + postId + ":bot_count";
         String val = redisTemplate.opsForValue().get(key);
